@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LinkStorage.Data
 {
-    public class LinkStroageDbContext : DbContext
+    public class LinkStorageDbContext : DbContext
     {
-        public LinkStroageDbContext(DbContextOptions<LinkStroageDbContext> options) : base(options) { }
+        public LinkStorageDbContext(DbContextOptions<LinkStorageDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }

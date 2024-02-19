@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LinkStorage.Models
 {
+    [Table("Users_Table")]
     public class User
     {
         [Key]
