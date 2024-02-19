@@ -1,4 +1,8 @@
 using LinkStorage.Data;
+using LinkStorage.Repository;
+using LinkStorage.Repository.RepoImpl;
+using LinkStorage.Services;
+using LinkStorage.Services.ServiesImpl;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinkStorage
@@ -11,9 +15,12 @@ namespace LinkStorage
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<LinkStorageDbContext>(options => options.UseSqlServer(
+           
+            builder.Services.AddDbContextPool<LinkStorageDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
+            builder.Services.AddScoped<ILinkRepository, LinkRepositoryImpl>();
+            builder.Services.AddScoped<ILinkService, LinkServiceImpl>();
 
             var app = builder.Build();
 

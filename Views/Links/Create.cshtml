@@ -1,0 +1,30 @@
+﻿@model Links
+@{
+    ViewData["Title"] = "Create Link";
+}
+
+<h3> Create a new link</h3>
+
+<form method="post">
+    <label asp-for="Link" ></label>
+    <input asp-for="Link" />
+    
+    <br/>
+    <br/>
+    <br/>
+    
+    <label asp-for="Site" ></label>
+    <input asp-for="Site" />
+    
+    <br/>
+    <br/>
+    <br/>
+        
+    <label asp-for="IsPublic" ></label>
+    <input asp-for="IsPublic" />
+    
+    <button type="submit" > Create </button>
+    
+
+</form>
+
