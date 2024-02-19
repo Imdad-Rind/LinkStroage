@@ -1,0 +1,31 @@
+@model IEnumerable<Links>
+@{
+    ViewData["Title"] = "Links - Home";
+}
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            Link
+        </th>
+        <th>
+            Site
+        </th>
+        <th>
+            Public
+        </th>
+
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var value in Model)
+        {
+            <tr>
+                <td>@value.Link</td>
+                <td>@value.Site</td>
+                <td>@value.IsPublic</td>
+            </tr>
+        }
+    </tbody>
+</table>
