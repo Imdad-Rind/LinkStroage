@@ -1,7 +1,7 @@
 # LinkStroage
 
 ## Description : 
-LinkStroage is a platform people to share their favorite content over the internet all for fun
+LinkStroage is a platform for the people to share their favorite content over the internet all for fun
 
 ## Featurs :
 The main feature of the platform is share of store link to your favorite content on the internet
@@ -16,7 +16,7 @@ The main feature of the platform is share of store link to your favorite content
 - Your IDE of choice
   * VS Code
   * Visual Studio
-  * Intellij Rider
+  * JetBrains Rider
 
 ## Clone the Git Repositories :
 ```shell
