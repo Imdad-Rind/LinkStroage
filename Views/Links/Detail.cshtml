@@ -1,0 +1,15 @@
+@using System.Security.AccessControl
+@model EmbedCodeApiResponce
+
+@{
+    ViewData["Title"] = "Detail - Links";
+}
+
+@if (Model != null)
+{
+    @Html.Raw(Model.html) 
+}
+else
+{
+    <p>Error fetching embed code.</p>
+}

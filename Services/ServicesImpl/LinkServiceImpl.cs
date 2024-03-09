@@ -1,7 +1,7 @@
 using LinkStorage.Models;
 using LinkStorage.Repository;
 
-namespace LinkStorage.Services.ServiesImpl;
+namespace LinkStorage.Services.ServicesImpl;
 
 public class  LinkServiceImpl : ILinkService
 {
@@ -17,7 +17,7 @@ public class  LinkServiceImpl : ILinkService
       await _repo.CreateLink(l);
     }
 
-    public async Task<Links> GetLinkById(Guid id)
+    public async Task<Links> GetLinkById(Guid? id)
     {
         return await _repo.GetLinkById(id);
     }

@@ -20,7 +20,7 @@ public class LinkRepositoryImpl : ILinkRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Links> GetLinkById(Guid id)
+    public async Task<Links> GetLinkById(Guid? id)
     {
         var lnk = await _context.Links.FindAsync(id);
         if (lnk == null)

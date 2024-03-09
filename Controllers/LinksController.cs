@@ -7,9 +7,11 @@ namespace LinkStorage.Controllers;
 public class LinksController : Controller
 {
     private readonly ILinkService _service;
+    private readonly IApiService _apiService;
 
-    public LinksController(ILinkService service)
+    public LinksController(ILinkService service, IApiService apiService)
     {
+        _apiService = apiService;
        _service = service;
     }
 
@@ -17,6 +19,16 @@ public class LinksController : Controller
     {
         var links = await _service.GetAllTheLinks();
         return View(links);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Detail(Guid? id)
+    {
+        var lnk = await _service.GetLinkById(id);
+        
+
+        return View();
+
     }
 
     [HttpGet]
@@ -31,6 +43,9 @@ public class LinksController : Controller
     {
         if (ModelState.IsValid)
         {
+            var content = await _apiService.EmbededContent(obj.Link);
+            obj.RawHtml = content.html;
+            
             await _service.CreateNewLink(obj);
             return RedirectToAction("Home");
         }

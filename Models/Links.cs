@@ -13,5 +13,7 @@ namespace LinkStorage.Models
         public string Site { get; set; }
         [Required]
         public bool IsPublic { get; set; } = false;
+
+        public string? RawHtml { get; set; }
     }
 }
