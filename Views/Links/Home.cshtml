@@ -6,9 +6,7 @@
 <table>
     <thead>
     <tr>
-        <th>
-            Link
-        </th>
+        
         <th>
             Site
         </th>
@@ -21,10 +19,16 @@
     <tbody>
         @foreach (var value in Model)
         {
+            <div style="width: 50%; ">@Html.Raw(@value.RawHtml)</div> 
             <tr>
-                <td>@value.Link</td>
                 <td>@value.Site</td>
+                
                 <td>@value.IsPublic</td>
+            </tr>
+            <tr>
+                <td>
+                    <a asp-controller="Links" asp-action="Detail" asp-route-id="@value.Id"> Detail </a>
+                </td>
             </tr>
         }
     </tbody>
