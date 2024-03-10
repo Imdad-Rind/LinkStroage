@@ -16,7 +16,10 @@ namespace LinkStorage.Models
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
+
+        public ICollection<Links> LinksCollection { get; } = new List<Links>();
         
-       
+        public List<UserRoles> UsersRoles { get; } = [];
+        public List<Roles> Roles { get; } = [];
     }
 }
