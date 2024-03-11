@@ -16,7 +16,6 @@ namespace LinkStorage.Models
 
         public string? RawHtml { get; set; }
 
-        public Guid? UserId { get; set; }
-        public User? User { get; set; }
+        public User User { get; set; }
     }
 }

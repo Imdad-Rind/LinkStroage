@@ -1,4 +1,5 @@
 using LinkStorage.Data;
+using LinkStorage.Models;
 using LinkStorage.Repository;
 using LinkStorage.Repository.RepoImpl;
 using LinkStorage.Services;
@@ -19,6 +20,9 @@ namespace LinkStorage
             builder.Services.AddDbContextPool<LinkStorageDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
+            builder.Services.AddIdentity<User, Roles>()
+                .AddEntityFrameworkStores<LinkStorageDbContext>();
+            
             builder.Services.AddHttpClient<IApiService, ApiServiceImpl>();
             
             builder.Services.AddScoped<IApiService, ApiServiceImpl>();
@@ -40,7 +44,8 @@ namespace LinkStorage
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

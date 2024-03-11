@@ -1,15 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace LinkStorage.Models
 {
-    public class Roles
+    public class Roles : IdentityRole
     {
-        [Key]
-        public Guid Id { get; set; }
-        [Required]
-        public string Authority { get; set; }
-        
-        public List<UserRoles> UsersRoles { get; } = [];
-        public List<User> Users { get; } = [];
+     
     }
 }

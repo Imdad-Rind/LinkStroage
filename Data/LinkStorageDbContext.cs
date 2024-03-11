@@ -1,9 +1,10 @@
 ﻿using LinkStorage.Models;
 using Microsoft.EntityFrameworkCore;
+using IdentityDbContext = Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext;
 
 namespace LinkStorage.Data
 {
-    public class LinkStorageDbContext : DbContext
+    public class LinkStorageDbContext : IdentityDbContext
     {
         public LinkStorageDbContext(DbContextOptions<LinkStorageDbContext> options) : base(options) { }
 

@@ -4,6 +4,7 @@ using LinkStorage.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LinkStorage.Migrations
 {
     [DbContext(typeof(LinkStorageDbContext))]
-    partial class LinkStorageDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240311103702_InitialWithIdentityFeaturesAndOtherTables")]
+    partial class InitialWithIdentityFeaturesAndOtherTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,12 +45,7 @@ namespace LinkStorage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Links");
                 });
@@ -275,15 +273,6 @@ namespace LinkStorage.Migrations
                     b.ToTable("Users_Table");
                 });
 
-            modelBuilder.Entity("LinkStorage.Models.Links", b =>
-                {
-                    b.HasOne("LinkStorage.Models.User", "User")
-                        .WithMany("LinksCollection")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -342,11 +331,6 @@ namespace LinkStorage.Migrations
                         .HasForeignKey("LinkStorage.Models.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("LinkStorage.Models.User", b =>
-                {
-                    b.Navigation("LinksCollection");
                 });
 #pragma warning restore 612, 618
         }
