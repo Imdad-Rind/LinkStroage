@@ -1,0 +1,23 @@
+@model LinkStorage.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<form method="post">
+    <label asp-for="UserName" ></label>
+    <input asp-for="UserName" />
+    <br/>
+    <br/>
+    <label asp-for="Password" ></label>
+    <input asp-for="Password" type="password" />
+     <br/>
+    <br/>
+    <label asp-for="RememberMe">
+        <input asp-for="RememberMe"/>
+        @Html.DisplayNameFor(m => m.RememberMe)
+    </label>
+    
+    <input type="submit" value="Login" />
+    
+</form>
+

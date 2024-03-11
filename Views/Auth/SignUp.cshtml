@@ -1,0 +1,27 @@
+@model LinkStorage.ViewModels.SignUpViewModel
+@{
+    ViewData["Title"] = "SignUp Page";
+}
+
+<form method="post">
+    <label asp-for="UserName" ></label>
+    <input asp-for="UserName" />
+    <br/>
+    <br/>
+    <label asp-for="Email" ></label>
+    <input asp-for="Email" />
+     <br/>
+     <br/>
+    <label asp-for="PhoneNumber" ></label>
+    <input asp-for="PhoneNumber" />
+     <br/>
+     <br/>
+    <label asp-for="Password" ></label>
+    <input asp-for="Password" type="password" />
+     <br/>
+     <br/>
+    
+    <input type="submit" value="SignUp" />
+    
+</form>
+

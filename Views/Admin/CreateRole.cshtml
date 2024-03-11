@@ -1,0 +1,14 @@
+@model LinkStorage.ViewModels.CreateRoleViewModel
+@{
+    ViewData["Title"] = "add Roles";
+}
+
+<form method="post">
+    <label asp-for="role" ></label>
+    <input asp-for="role" />
+    <br/>
+    <br/>
+    
+    <input type="submit" value="Create Role" />
+    
+</form>
