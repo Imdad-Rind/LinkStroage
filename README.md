@@ -4,7 +4,7 @@
 LinkStroage is a platform for the people to share their favorite content over the internet all for fun
 
 ## Featurs :
-The main feature of the platform is share of store link to your favorite content on the internet
+The main feature of the platform is share or store link to your favorite content on the internet
 
 ## Technologies :
 - Asp.net Core MVC
@@ -17,6 +17,7 @@ The main feature of the platform is share of store link to your favorite content
   * VS Code
   * Visual Studio
   * JetBrains Rider
+  * JetBrains Fleet
 
 ## Clone the Git Repositories :
 ```shell
