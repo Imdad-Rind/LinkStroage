@@ -1,0 +1,21 @@
+@model IEnumerable<Links>
+@{
+    ViewData["Title"] = "Links - Explore";
+}
+
+
+<div>
+    
+    
+        @foreach (var value in Model)
+        {
+            <h3>@value.User.UserName</h3>
+            <h6>@value.Site</h6>
+            <div style="width: 40%; ">@Html.Raw(@value.RawHtml)</div> 
+            <br/>
+            <br/>
+            
+            
+        }
+        
+</div>
