@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LinkStorage.Controllers;
 
-public class AuthController : Controller
+public class AccountController : Controller
 {
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
 
-    public AuthController(UserManager<User> userManager, 
+    public AccountController(UserManager<User> userManager, 
          SignInManager<User> signInManager)
     {
         _userManager = userManager;
