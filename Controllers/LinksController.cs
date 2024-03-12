@@ -21,10 +21,19 @@ public class LinksController : Controller
         _service = service;
     }
 
+    [HttpGet]
     public async Task<IActionResult> Home()
     {
         var links = await _service.GetAllTheLinks();
         return View(links);
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> Explore()
+    {
+        var content = await _service.GetPublicLinks();
+        return View(content);
     }
 
     [HttpGet]

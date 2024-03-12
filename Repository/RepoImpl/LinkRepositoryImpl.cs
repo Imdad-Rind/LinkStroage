@@ -1,5 +1,6 @@
 using LinkStorage.Data;
 using LinkStorage.Models;
+using LinkStorage.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinkStorage.Repository.RepoImpl;
@@ -36,6 +37,14 @@ public class LinkRepositoryImpl : ILinkRepository
         return await _context.Links.ToListAsync();
     }
 
+    public async Task<IEnumerable<Links>> GetAllPublicLinksAndTheirUsername()
+    {
+        return await _context.Links.Include(l => l.User)
+            .Where(l => l.IsPublic)
+            .ToListAsync();
+
+    }
+
     public async Task DeleteLinkById(Guid id)
     {
         var lnk = await _context.Links.FindAsync(id);
@@ -56,7 +65,7 @@ public class LinkRepositoryImpl : ILinkRepository
         return link;
     }
 
-    public async Task<bool> isLinkPresent(string url)
+    public async Task<bool> IsLinkPresent(string url)
     {
         return await _context.Links.AnyAsync(l => l.Link.Contains(url));
 
@@ -64,7 +73,7 @@ public class LinkRepositoryImpl : ILinkRepository
 
     public async Task<string> GetHtmlByUrl(string url)
     {
-        if (await isLinkPresent(url))
+        if (await IsLinkPresent(url))
         {
             var lnk = await _context.Links.FirstOrDefaultAsync(l => l.Link.Contains(url));
             return lnk.RawHtml;

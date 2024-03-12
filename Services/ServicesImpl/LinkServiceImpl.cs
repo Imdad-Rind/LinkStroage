@@ -32,6 +32,11 @@ public class  LinkServiceImpl : ILinkService
         return await _repo.GetHtmlByUrl(url);
     }
 
+    public Task<IEnumerable<Links>> GetPublicLinks()
+    {
+        return _repo.GetAllPublicLinksAndTheirUsername();
+    }
+
     public async Task<Links> UpdateTheLinkBuyId(Guid id,Links link)
     {
         var existingLink = await _repo.GetLinkById(id);
