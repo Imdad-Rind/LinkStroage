@@ -11,7 +11,7 @@
     <div>
         @if (SignInManager.IsSignedIn(User))
         {
-            <form method="post" asp-controller="Auth" asp-action="LogOut" >
+            <form method="post" asp-controller="Account" asp-action="LogOut" >
                 <button type="submit">
                     LogOut @User?.Identity?.Name
                 </button>
@@ -19,9 +19,9 @@
         }
         else
         {
-            <button> <a asp-controller="Auth" asp-action="Login" > Login </a>  </button> 
+            <button> <a asp-controller="Account" asp-action="Login" > Login </a>  </button> 
             
-            <button> <a asp-controller="Auth" asp-action="SignUp" > SignUp </a> </button>
+            <button> <a asp-controller="Account" asp-action="SignUp" > SignUp </a> </button>
             
         }
     </div>

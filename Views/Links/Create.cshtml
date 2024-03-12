@@ -1,13 +1,14 @@
-﻿@model Links
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model LinkStorage.ViewModels.LinksCreateViewModel
 @{
     ViewData["Title"] = "Create Link";
 }
 
 <h3> Create a new link</h3>
 
-<form method="post">
+<form method="post" asp-controller="Links" asp-action="Create" >
     <label asp-for="Link" ></label>
-    <input asp-for="Link" />
+    <input asp-for="Link" type="url" />
     
     <br/>
     <br/>
@@ -22,8 +23,9 @@
         
     <label asp-for="IsPublic" ></label>
     <input asp-for="IsPublic" />
-    
-    <button type="submit" > Create </button>
+    <br/>
+        <br/>
+    <input type="submit" value="Submit"/>
     
 
 </form>
