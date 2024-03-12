@@ -27,6 +27,11 @@ public class  LinkServiceImpl : ILinkService
         return await _repo.GetAllLinks();
     }
 
+    public async Task<string> GetHtmlIfExist(string url)
+    {
+        return await _repo.GetHtmlByUrl(url);
+    }
+
     public async Task<Links> UpdateTheLinkBuyId(Guid id,Links link)
     {
         var existingLink = await _repo.GetLinkById(id);
