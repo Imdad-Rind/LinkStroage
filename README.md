@@ -8,7 +8,7 @@ The main feature of the platform is share or store link to your favorite content
 
 ## Technologies :
 - Asp.net Core MVC
-- Tailwind Css
+- Tailwind CSS
 - Iframely 
 
 ## Requirements :
