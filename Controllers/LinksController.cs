@@ -60,17 +60,21 @@ public class LinksController : Controller
                 
             };
             lnk.User.Id = u.Id;
-            
-            var content = await _apiService.EmbededContent(model.Link);
-            lnk.RawHtml = content.html;
+
+            if (await _service.GetHtmlIfExist(model.Link) != null )
+            {
+                lnk.RawHtml = await _service.GetHtmlIfExist(model.Link);
+            }
+            else
+            {
+                var content = await _apiService.EmbededContent(model.Link);
+                lnk.RawHtml = content.html;
+            }
             
             await _service.CreateNewLink(lnk);
             return RedirectToAction("Home");
         }
-        /*Console.WriteLine(" End of func ....");
-        Console.WriteLine("\n\n.... ~~~~~~~~~~~ ....\n\n");
-        Console.WriteLine(obj.Link.);
-        Console.WriteLine("\n\n.... ~~~~~~~~~~~ ....\n\n");*/
+        
         return View(model);
     }
 }

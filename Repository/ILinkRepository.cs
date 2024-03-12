@@ -9,6 +9,8 @@ public interface ILinkRepository
     Task<IEnumerable<Links>> GetAllLinks();
     Task DeleteLinkById(Guid id);
     Task<Links> UpdateLink(Links link);
+    Task<bool> isLinkPresent(string url);
+    Task<string> GetHtmlByUrl(string url);
 
 
 }

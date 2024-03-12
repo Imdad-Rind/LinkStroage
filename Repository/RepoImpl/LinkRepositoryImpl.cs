@@ -55,4 +55,21 @@ public class LinkRepositoryImpl : ILinkRepository
         
         return link;
     }
+
+    public async Task<bool> isLinkPresent(string url)
+    {
+        return await _context.Links.AnyAsync(l => l.Link.Contains(url));
+
+    }
+
+    public async Task<string> GetHtmlByUrl(string url)
+    {
+        if (await isLinkPresent(url))
+        {
+            var lnk = await _context.Links.FirstOrDefaultAsync(l => l.Link.Contains(url));
+            return lnk.RawHtml;
+        }
+
+        return null;
+    }
 }
