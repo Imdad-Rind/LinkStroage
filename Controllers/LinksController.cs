@@ -24,7 +24,10 @@ public class LinksController : Controller
     [HttpGet]
     public async Task<IActionResult> Home()
     {
-        var links = await _service.GetAllTheLinks();
+        var u = await _userManager.GetUserAsync(User);
+        Guid.TryParse(u.Id ,out Guid uId);
+        
+        var links = await _service.AllTheLinksByUserId(uId);
         return View(links);
     }
 

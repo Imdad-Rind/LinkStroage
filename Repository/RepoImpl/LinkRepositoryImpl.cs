@@ -45,6 +45,12 @@ public class LinkRepositoryImpl : ILinkRepository
 
     }
 
+    public async Task<IEnumerable<Links>> GetAllTheLinksByUserId(Guid id)
+    {
+        var StringUserId = id.ToString();
+        return await _context.Links.Include(l => l.User).Where(l => l.User.Id == StringUserId).ToListAsync();
+    }
+
     public async Task DeleteLinkById(Guid id)
     {
         var lnk = await _context.Links.FindAsync(id);
