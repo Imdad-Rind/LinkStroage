@@ -10,6 +10,7 @@ public interface ILinkService
 
     Task<string> GetHtmlIfExist(string url);
     Task<IEnumerable<Links>> GetPublicLinks();
+    Task<IEnumerable<Links>> AllTheLinksByUserId(Guid id);
     
     Task<Links> UpdateTheLinkBuyId(Guid id,Links link);
     Task RemoveLinkFormDbById(Guid id);
