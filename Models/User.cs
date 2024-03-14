@@ -8,5 +8,8 @@ namespace LinkStorage.Models
     public class User : IdentityUser
     {
         public ICollection<Links>? LinksCollection { get; } = new List<Links>();
+        
+        public virtual ICollection<Follows> Followers { get; set; }
+        public virtual ICollection<Follows> Following { get; set; }
     }
 }
