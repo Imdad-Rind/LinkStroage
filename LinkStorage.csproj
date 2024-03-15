@@ -24,10 +24,6 @@
 	  <PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Views\Users\" />
-	</ItemGroup>
-
 	<Target Name="Tailwind" BeforeTargets="Build">
 		<Exec Command="npm run css:build" />
 	</Target>

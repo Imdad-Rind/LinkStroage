@@ -37,6 +37,14 @@ public class LinkRepositoryImpl : ILinkRepository
         return await _context.Links.ToListAsync();
     }
 
+    public async Task<IEnumerable<Links>> GetAllPublicLinksAndTheirUsernameById(Guid? id)
+    {
+        var StringUserId = id.ToString();
+        return await _context.Links.Include(l => l.User)
+            .Where(l => l.IsPublic & l.User.Id == StringUserId)
+            .ToListAsync();
+    }
+
     public async Task<IEnumerable<Links>> GetAllPublicLinksAndTheirUsername()
     {
         return await _context.Links.Include(l => l.User)
