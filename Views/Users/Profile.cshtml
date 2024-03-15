@@ -8,10 +8,16 @@
 <div>
     <div>
         <h1> @Model.User.UserName </h1>
+        <p> Post : @Model.User.PublicPostCount</p>
+        <p> Followers : @Model.User.FollowersCount</p>
+        <p>Following : @Model.User.FollowingsCount</p>
+        <hr/>
+       
         
     </div>
     <div>
-        <h3> All the public post by </h3>
+        <h4> All the public post by </h4>
+        <hr/>
         @foreach (var lnk in Model.links)
         {
             <h3>@lnk.User.UserName</h3>
@@ -19,6 +25,7 @@
             <div style="width: 40%; ">@Html.Raw(@lnk.RawHtml)</div> 
             <br/>
             <br/>
+            <hr/>
         }
         
     </div>
