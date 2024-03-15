@@ -72,6 +72,10 @@ public class LinksController : Controller
                 
             };
             lnk.User.Id = u.Id;
+            if (lnk.IsPublic)
+            {
+                lnk.User.PublicPostCount++;
+            }
 
             if (await _service.GetHtmlIfExist(model.Link) != null )
             {
