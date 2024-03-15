@@ -1,0 +1,32 @@
+@*@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager*@
+@model LinkStorage.ViewModels.ProfileViewModel
+@{
+    
+    ViewData["Title"] =  "Profile ";
+}
+<div>
+    <div>
+        <h1> @Model.User.UserName </h1>
+        
+    </div>
+    <div>
+        <h3> All the public post by </h3>
+        @foreach (var lnk in Model.links)
+        {
+            <h3>@lnk.User.UserName</h3>
+            <h6>@lnk.Site</h6>
+            <div style="width: 40%; ">@Html.Raw(@lnk.RawHtml)</div> 
+            <br/>
+            <br/>
+        }
+        
+    </div>
+
+
+
+</div>
+
+    
+    
+

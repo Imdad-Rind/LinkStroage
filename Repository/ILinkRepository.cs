@@ -7,6 +7,7 @@ public interface ILinkRepository
     Task CreateLink(Links links);
     Task<Links> GetLinkById(Guid? id);
     Task<IEnumerable<Links>> GetAllLinks();
+    Task<IEnumerable<Links>> GetAllPublicLinksAndTheirUsernameById(Guid? id);
     Task<IEnumerable<Links>> GetAllPublicLinksAndTheirUsername();
     Task<IEnumerable<Links>> GetAllTheLinksByUserId(Guid id);
     Task DeleteLinkById(Guid id);
