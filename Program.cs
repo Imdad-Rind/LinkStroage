@@ -28,6 +28,8 @@ namespace LinkStorage
             builder.Services.AddScoped<IApiService, ApiServiceImpl>();
             builder.Services.AddScoped<ILinkRepository, LinkRepositoryImpl>();
             builder.Services.AddScoped<ILinkService, LinkServiceImpl>();
+            builder.Services.AddScoped<IFollowsRepository, FollowsRepositoryImpl>();
+            builder.Services.AddScoped<IFollowerService, FollowerServiceImpl>();
             
 
             var app = builder.Build();

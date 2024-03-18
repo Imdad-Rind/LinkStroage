@@ -1,5 +1,6 @@
-@*@using Microsoft.AspNetCore.Identity
-@inject SignInManager<User> SignInManager*@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @model LinkStorage.ViewModels.ProfileViewModel
 @{
     
@@ -12,7 +13,36 @@
         <p> Followers : @Model.User.FollowersCount</p>
         <p>Following : @Model.User.FollowingsCount</p>
         <hr/>
-       
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (Model.User.Id != UserManager.GetUserId(User))
+            {
+
+
+
+                if (Model.IsFollowing)
+                {
+                    <form method="get">
+                        <button> <a asp-controller="Follows" asp-action="UnFollow" asp-route-id="@Model.User.Id">unfollow</a> </button>
+                    </form>
+                }
+                else
+                {
+                    <form method="get">
+                        <button> <a asp-controller="Follows" asp-action="FollowUser" asp-route-id="@Model.User.Id">Follow</a> </button>
+                    </form>
+
+                }
+                
+                <br/>
+                <hr/>
+            }
+
+           
+        }
+        
+        
         
     </div>
     <div>
