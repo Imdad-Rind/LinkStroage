@@ -2,7 +2,6 @@ using LinkStorage.Models;
 using LinkStorage.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace LinkStorage.Controllers;
 
