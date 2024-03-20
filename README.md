@@ -42,7 +42,7 @@ OR
 
 ## License :
 
-This Project is licensed under the [BSD 4-Clause License](https://github.com/Imdad-Rind/LinkStroage?tab=BSD-4-Clause-1-ov-file#readme)
+This Project is licensed under the [MIT License](https://github.com/Imdad-Rind/LinkStroage/blob/main/LICENSE)
 
 ## Disclaimer :
 
