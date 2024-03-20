@@ -1,28 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<User> SignInManager
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to LinkStorage</h1>
+<div >
+    <h1>Welcome to LinkStorage</h1>
     <p>GitHub Repo Link to <a href="https://github.com/Imdad-Rind/LinkStroage"> LinkStorage</a>.</p>
     
-    <div>
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <form method="post" asp-controller="Account" asp-action="LogOut" >
-                <button type="submit">
-                    LogOut @User?.Identity?.Name
-                </button>
-            </form>
-        }
-        else
-        {
-            <button> <a asp-controller="Account" asp-action="Login" > Login </a>  </button> 
-            
-            <button> <a asp-controller="Account" asp-action="SignUp" > SignUp </a> </button>
-            
-        }
-    </div>
 </div>
