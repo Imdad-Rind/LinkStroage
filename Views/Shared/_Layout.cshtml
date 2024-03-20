@@ -46,6 +46,16 @@
                                     <li>
                                         <a  class="block py-2 px-3 text-black  hover:bg-red-900 md:hover:bg-transparent md:hover:text-red-900 md:p-0"   asp-area="" asp-controller="Links" asp-action="Explore">Explore</a>
                                     </li>
+                                    <li>
+                                         @if (SignInManager.IsSignedIn(User))
+                                         {
+                                             <form method="post" asp-controller="Account" asp-action="LogOut">
+                                                 <button type="submit" class="block py-2 px-3 text-black  hover:bg-red-900 md:hover:bg-transparent md:hover:text-red-900 md:p-0">
+                                                     Logout 
+                                                 </button>
+                                             </form>
+                                         }
+                                    </li>
                                 </ul>
                             </div>
                             

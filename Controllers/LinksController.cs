@@ -33,13 +33,16 @@ public class LinksController : Controller
 
     [HttpGet]
     [AllowAnonymous]
+    /*
+     * view all the public links or embed links
+     */
     public async Task<IActionResult> Explore()
     {
         var content = await _service.GetPublicLinks();
         return View(content);
     }
 
-    [HttpGet]
+    /*[HttpGet]
     public async Task<IActionResult> Detail(Guid? id)
     {
         var lnk = await _service.GetLinkById(id);
@@ -47,7 +50,7 @@ public class LinksController : Controller
 
         return View();
 
-    }
+    }*/
 
     [HttpGet]
     public IActionResult Create()

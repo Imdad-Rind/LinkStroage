@@ -5,6 +5,9 @@ namespace LinkStorage.Services.ServicesImpl;
 
 public class FollowerServiceImpl : IFollowerService
 {
+/*  service class for following system
+ */       
+    
     private readonly IFollowsRepository _repo;
 
     public FollowerServiceImpl(IFollowsRepository repo)

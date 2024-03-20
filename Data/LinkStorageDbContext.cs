@@ -13,6 +13,7 @@ namespace LinkStorage.Data
         public DbSet<Links> Links { get; set; }
         public DbSet<Follows> Follows { get; set; }
 
+        /* this is folows class is mapped to user class*/
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -64,10 +64,6 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            /*var user = new User
-            {
-                UserName = model.UserName
-            };*/
             var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe,
                 lockoutOnFailure: false);
             if (result.Succeeded)
