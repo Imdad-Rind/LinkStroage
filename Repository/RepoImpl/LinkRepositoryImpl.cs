@@ -13,14 +13,17 @@ public class LinkRepositoryImpl : ILinkRepository
     {
         this._context = context;
     }
-
+    
+    
+    /* create a new link or upload*/
 
     public async  Task CreateLink(Links links)
     {
         await _context.Links.AddAsync(links);
         await _context.SaveChangesAsync();
     }
-
+    
+    /* get the link by its id*/
     public async Task<Links> GetLinkById(Guid? id)
     {
         var lnk = await _context.Links.FindAsync(id);
@@ -31,12 +34,16 @@ public class LinkRepositoryImpl : ILinkRepository
 
         return lnk;
     }
-
+    /* get all the links from DB */
     public async Task<IEnumerable<Links>> GetAllLinks()
     {
         return await _context.Links.ToListAsync();
     }
-
+    /*
+     *
+     * get the all the public links and user's username from DB by the id of the user who uploaded them
+     * 
+     */
     public async Task<IEnumerable<Links>> GetAllPublicLinksAndTheirUsernameById(Guid? id)
     {
         var StringUserId = id.ToString();
@@ -44,7 +51,10 @@ public class LinkRepositoryImpl : ILinkRepository
             .Where(l => l.IsPublic & l.User.Id == StringUserId)
             .ToListAsync();
     }
-
+    
+    /*
+     * get all the public links From DB with User's username who uploaded them
+     * */
     public async Task<IEnumerable<Links>> GetAllPublicLinksAndTheirUsername()
     {
         return await _context.Links.Include(l => l.User)
@@ -52,13 +62,15 @@ public class LinkRepositoryImpl : ILinkRepository
             .ToListAsync();
 
     }
-
+    /*
+     * get all the links by the user id of the uploader
+     */
     public async Task<IEnumerable<Links>> GetAllTheLinksByUserId(Guid id)
     {
         var StringUserId = id.ToString();
         return await _context.Links.Include(l => l.User).Where(l => l.User.Id == StringUserId).ToListAsync();
     }
-
+    /* delete link from DB*/
     public async Task DeleteLinkById(Guid id)
     {
         var lnk = await _context.Links.FindAsync(id);
@@ -70,7 +82,9 @@ public class LinkRepositoryImpl : ILinkRepository
         _context.Links.Remove(lnk);
         await _context.SaveChangesAsync();
     }
-
+        /*
+         * update link
+         */
     public async Task<Links> UpdateLink(Links link)
     {
         _context.Links.Update(link);
@@ -78,13 +92,19 @@ public class LinkRepositoryImpl : ILinkRepository
         
         return link;
     }
-
+    /*
+     * check if the link is already present in the DB 
+     */
     public async Task<bool> IsLinkPresent(string url)
     {
         return await _context.Links.AnyAsync(l => l.Link.Contains(url));
 
     }
-
+        /*
+         *
+         * if the link is already present in DB so get raw html for embed link 
+         * 
+         */
     public async Task<string> GetHtmlByUrl(string url)
     {
         if (await IsLinkPresent(url))

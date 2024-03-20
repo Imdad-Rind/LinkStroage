@@ -14,7 +14,7 @@ public class FollowsRepositoryImpl : IFollowsRepository
         _context = context;
        
     }
-
+    /*add a new follower */
     public async Task<bool> FollowUser(Guid CurrentUserId, Guid FollowingUserId)
     {
         if (CurrentUserId == FollowingUserId)
@@ -46,6 +46,8 @@ public class FollowsRepositoryImpl : IFollowsRepository
         
 
     }
+    
+    /*unfollow the user*/
 
     public async Task<bool> UnFollowUser(Guid CurrentUserId, Guid FollowingUserId)
     {
@@ -67,7 +69,7 @@ public class FollowsRepositoryImpl : IFollowsRepository
 
         return false;
     }
-
+        /*check if already following the user or not*/
     public async Task<bool> IsUserFollowing(Guid? CurrentUserId, Guid? FollowingUserId)
     {
         return await _context.Follows.AnyAsync(f =>
@@ -83,7 +85,8 @@ public class FollowsRepositoryImpl : IFollowsRepository
                         .ToListAsync();
 
     }
-
+    
+    /*get the list of all the users of which the current user is following by current user id*/
     public async Task<IEnumerable<User>>  GetAllFollowingByUserID(Guid Id)
     {
         return
@@ -92,7 +95,10 @@ public class FollowsRepositoryImpl : IFollowsRepository
                     .SelectMany(u => u.Following.Select(f => f.Following))
                         .ToListAsync();
     }
-
+    /*
+     *  here i wanted the get the id of current user id who is following a user
+     * by the id of the user who is being followed by the current user
+     */
     public async Task<string> GetTheIdOfThePersonWhoISFollowingByIdOfThePersonWhoIsBeingFollowed(string id)
     {
         var following = await _context.Follows.SingleOrDefaultAsync(f => f.Follower_Id == id);

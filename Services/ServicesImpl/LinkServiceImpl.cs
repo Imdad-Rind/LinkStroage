@@ -5,6 +5,9 @@ namespace LinkStorage.Services.ServicesImpl;
 
 public class  LinkServiceImpl : ILinkService
 {
+    
+    /*  service class for links system
+ */    
     private readonly ILinkRepository _repo;
 
     public LinkServiceImpl(ILinkRepository repo)
