@@ -68,8 +68,39 @@ public class LinkRepositoryImpl : ILinkRepository
     public async Task<IEnumerable<Links>> GetAllTheLinksByUserId(Guid id)
     {
         var StringUserId = id.ToString();
-        return await _context.Links.Include(l => l.User).Where(l => l.User.Id == StringUserId).ToListAsync();
+        return await _context.Links.Include(l => l.User)
+            .Where(l => l.User.Id == StringUserId)
+            .ToListAsync();
     }
+   
+    /*
+     *
+     * here i want get all public link post by user who is being followed by the current user
+     * to get all the all link i am using current user id
+     * 
+     */
+    
+    public async Task<IEnumerable<Links>> GetAllThePublicLinksOfUserYouFollowingByYourId(Guid? yourUserId)
+    {
+        
+        // Get the user IDs of the accounts the current user is following
+        var followedUserIds = await _context.Follows
+            .Where(f => f.Follower_Id == yourUserId.ToString())
+            .Select(f => f.Following_Id)
+            .ToListAsync();
+
+        // Retrieve public posts from the followed users
+        var publicPosts = await _context.Links
+            .Include(l => l.User) // Include the User navigation property
+            .Where(l => followedUserIds.Contains(l.User.Id) && l.IsPublic)
+            .ToListAsync();
+
+        return  publicPosts;
+        
+        
+    }
+    
+
     /* delete link from DB*/
     public async Task DeleteLinkById(Guid id)
     {
