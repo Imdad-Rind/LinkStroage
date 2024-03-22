@@ -12,7 +12,7 @@ public interface ILinkService
     Task<IEnumerable<Links>> GetPublicLinks();
     Task<IEnumerable<Links>> GetAllPublicLinksById(Guid? id);
     Task<IEnumerable<Links>> AllTheLinksByUserId(Guid id);
-    Task<IEnumerable<Links>> GetAllThePublicLinksOfUserYouFollowingByYourId(Guid? yourUserId);
+    Task<IEnumerable<Links>> GetAllThePublicLinksOfUserYouFollowingByYourId(Guid yourUserId);
     Task<Links> UpdateTheLinkBuyId(Guid id,Links link);
     Task RemoveLinkFormDbById(Guid id);
 

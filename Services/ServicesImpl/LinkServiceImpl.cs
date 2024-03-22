@@ -50,7 +50,7 @@ public class  LinkServiceImpl : ILinkService
         return await _repo.GetAllTheLinksByUserId(id);
     }
 
-    public async Task<IEnumerable<Links>> GetAllThePublicLinksOfUserYouFollowingByYourId(Guid? yourUserId)
+    public async Task<IEnumerable<Links>> GetAllThePublicLinksOfUserYouFollowingByYourId(Guid yourUserId)
     {
         return await _repo.GetAllThePublicLinksOfUserYouFollowingByYourId(yourUserId);
     }

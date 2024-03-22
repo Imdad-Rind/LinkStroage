@@ -12,18 +12,27 @@
     @{
         if (SignInManager.IsSignedIn(User))
         {
-            foreach (var value in Model)
+            if (Model.Any())
             {
-                <a asp-controller="Users" asp-action="Profile" asp-route-id="@value.User.Id">
-                    <h3>@value.User.UserName</h3></a>
-                <h6>@value.Site</h6>
-                <div style="width: 40%; ">@Html.Raw(@value.RawHtml)</div>
-                <br/>
-                <br/>
-                <hr/>
+                foreach (var value in Model)
+                {
+                    <a asp-controller="Users" asp-action="Profile" asp-route-id="@value.User.Id">
+                        <h3>@value.User.UserName</h3></a>
+                    <h6>@value.Site</h6>
+                    <div style="width: 40%; ">@Html.Raw(@value.RawHtml)</div>
+                    <br/>
+                    <br/>
+                    <hr/>
 
 
+                }
             }
+            else
+            {
+                <h2>Please follow some to get to see their their posts on your home feed </h2>
+                <h5>for now <a asp-controller="Links" asp-action="Explore" > Explore</a></h5>
+            }
+            
         }
         else
         {

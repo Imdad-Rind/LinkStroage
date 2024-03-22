@@ -80,24 +80,21 @@ public class LinkRepositoryImpl : ILinkRepository
      * 
      */
     
-    public async Task<IEnumerable<Links>> GetAllThePublicLinksOfUserYouFollowingByYourId(Guid? yourUserId)
+    public async Task<IEnumerable<Links>> GetAllThePublicLinksOfUserYouFollowingByYourId(Guid yourUserId)
     {
         
-        // Get the user IDs of the accounts the current user is following
         var followedUserIds = await _context.Follows
-            .Where(f => f.Follower_Id == yourUserId.ToString())
-            .Select(f => f.Following_Id)
+            .Where(uf => uf.Follower_Id == yourUserId.ToString())
+            .Select(uf => uf.Following_Id)
             .ToListAsync();
 
-        // Retrieve public posts from the followed users
-        var publicPosts = await _context.Links
-            .Include(l => l.User) // Include the User navigation property
-            .Where(l => followedUserIds.Contains(l.User.Id) && l.IsPublic)
+        var posts = await _context.Links.Include(l => l.User)
+            .Where(p => followedUserIds.Contains(p.User.Id) && p.IsPublic)
             .ToListAsync();
 
-        return  publicPosts;
-        
-        
+        return posts;
+
+
     }
     
 
