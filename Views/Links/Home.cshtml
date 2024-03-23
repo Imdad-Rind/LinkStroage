@@ -3,33 +3,26 @@
     ViewData["Title"] = "Links - Home";
 }
 
-<table>
-    <thead>
-    <tr>
+@foreach (var value in Model)
+    {
+        <div class=" ml-36 w-8/12  rounded-lg shadow ">
+            <div class="rounded-t-lg">
+                @Html.Raw(@value.RawHtml)
+            </div>
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Is It Public :
+                    @if (value.IsPublic)
+                    {
+                        <h5>Yes</h5>
+                    }
+                    else
+                    {
+                        <h5>No</h5>
+                    }
+                </h5>
+                <h6 class="mb-3 font-normal text-gray-700 "> Site : @value.Site</h6>
+            </div>
+            <hr class="w-48 h-1 mx-auto my-4 bg-red-900 border-0 rounded md:my-10 ">
+        </div>
         
-        <th>
-            Site
-        </th>
-        <th>
-            Public
-        </th>
-
-    </tr>
-    </thead>
-    <tbody>
-        @foreach (var value in Model)
-        {
-            <div style="width: 50%; ">@Html.Raw(@value.RawHtml)</div> 
-            <tr>
-                <td>@value.Site</td>
-                
-                <td>@value.IsPublic</td>
-            </tr>
-            <tr>
-                @*<td>
-                    <a asp-controller="Links" asp-action="Detail" asp-route-id="@value.Id"> Detail </a>
-                </td>*@
-            </tr>
-        }
-    </tbody>
-</table>
+    }

@@ -8,72 +8,90 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LinkStorage</title>
-    <link rel="stylesheet" href="css/styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true"/>
 </head>
 <body>
     <header>
-             <nav class="bg-red-300 fixed w-full z-20 top-0 start-0  ">
-                        <div class=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                            <a class="flex items-center space-x-3 rtl:space-x-reverse text-2xl border-l-2 border-red-900 ml-3 pl-1" asp-area="" asp-controller="Home" asp-action="Index">LinkStorage</a>
-                           
-                            <div class="flex flex-col p-4 justify-end items-end md:p-0 mt-4 font-medium  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 " >
-                                @if (SignInManager.IsSignedIn(User))
-                                {
-                                    var UserId = UserManager.GetUserId(User);
-                                    
-                                        <a asp-controller="Users" asp-action="Profile" asp-route-id="@UserId" class="block py-2 px-3 text-white border-b-2 border-red-300 hover:border-red-900 md:bg-transparent md:text-white md:p-0 " >
-                                            Hello, @User?.Identity?.Name
-                                        </a>
-                                }
-                                else
-                                {
-                                     <a class="block py-2 px-3 text-black  hover:bg-red-900 md:hover:bg-transparent md:hover:text-red-900 md:p-0 " asp-controller="Account" asp-action="Login" > Login </a> 
-                                    
-                                     <a class="block py-2 px-3 text-black  hover:bg-red-900 md:hover:bg-transparent md:hover:text-red-900 md:p-0 " asp-controller="Account" asp-action="SignUp" > SignUp </a> 
-                                    
-                                }
-                            </div>
-                            
-                            <div class="items-center justify-start w-full md:flex md:w-auto md:order-1">
-                                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 " >
+             <nav class="bg-red-300    ">
+                        <div class=" flex flex-row pt-4 pb-6">
+                            <a class=" font-bold text-2xl ml-7 pl-1 flex border-l-2 border-red-900 flex-row justify-start" asp-area="" asp-controller="Home" asp-action="Index">LinkStorage</a>
+                            <div class="">
+                                
+                                <ul class=" flex flex-row justify-center  pl-8 ">
                                     <li >
-                                        <a class="block py-2 px-3 text-red-900 bg-red-900 hover:text-black md:bg-transparent md:text-red-900 md:p-0 " asp-area="" asp-controller="Home" asp-action="Index">
-                                            <i class="fa-solid fa-house"></i>
-                                            Home
-                                        </a>
+                                        <a class=" font-semibold text-lg pl-3 text-red-900 hover:text-black " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                     </li>
                                     <li>
-                                        <a  class="block py-2 px-3 text-black  hover:bg-red-900 md:hover:bg-transparent md:hover:text-red-900 md:p-0"   asp-area="" asp-controller="Links" asp-action="Explore">Explore</a>
-                                    </li>
-                                    <li>
-                                         @if (SignInManager.IsSignedIn(User))
-                                         {
-                                             <form method="post" asp-controller="Account" asp-action="LogOut">
-                                                 <button type="submit" class="block py-2 px-3 text-black  hover:bg-red-900 md:hover:bg-transparent md:hover:text-red-900 md:p-0">
-                                                     Logout 
-                                                 </button>
-                                             </form>
-                                         }
+                                        <a class=" text-lg pl-3  text-black hover:text-red-900" asp-area="" asp-controller="Links" asp-action="Explore">Explore</a>
                                     </li>
                                 </ul>
                             </div>
+                           
+                            <div class="  flex flex-row justify-end pl-9 " >
+                                
+                                @if (!SignInManager.IsSignedIn(User))
+                                {
+                                     <a class=" text-lg text-black hover:text-red-900 pl-3"  asp-controller="Account" asp-action="Login" > Login </a> 
+                                    
+                                     <a class=" text-lg text-black hover:text-red-900 pl-3 " asp-controller="Account" asp-action="SignUp" > SignUp </a> 
+                                    
+                                }
+                                else
+                                {
+                                    var userId = UserManager.GetUserId(User);
+                                    <a  asp-controller="Users" asp-action="Profile" asp-route-id="@userId" class=" text-black border-b-2 text-lg font-bold border-black hover:border-red-900 hover:text-red-900 " >
+                                        Hello, @User?.Identity?.Name
+                                    </a> 
+                                }
+                            </div>
+                            
+                           
                             
                         </div>
                     </nav>
 
     </header>
-    <div class="container">
+    <div class="container w-4/5 pt-20 flex justify-center">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer>
-        <div class="container">
-            &copy; 2024 - LinkStorage - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-       
-    </footer>
+        
+                
+
+        <footer class=" rounded-lg shadow m-4">
+            <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <a asp-controller="Home" asp-action="Index"  class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                        <span class="self-center text-black text-2xl font-semibold whitespace-nowrap ">LinkStorage</span>
+                    </a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <form method="post" asp-controller="Account" asp-action="LogOut">
+                            <button type="submit">
+                                <h3 class="flex justify-end items-end  mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                                    <span class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-300 hover:bg-red-900 hover:text-white text-black rounded-lg focus:ring-4 focus:outline-none focus:ring-red-300">Log Out</span>
+                                </h3>
+                            </button>
+                        </form>
+                    }
+                    <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-black sm:mb-0 ">
+                        <li>
+                            <a asp-area=""  asp-action="About" asp-controller="Home" class=" hover:text-red-900 hover:underline me-4 md:me-6">About</a>
+                        </li>
+                        <li>
+                            <a class=" text-black hover:text-red-900 hover:underline me-4 " asp-area="" asp-controller="Home" asp-action="Privacy" >Privacy Policy</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <hr class="my-6 border-black sm:mx-auto  lg:my-8" />
+                <span class="block text-sm text-black  ">© 2024 <a asp-area="" asp-controller="Home" asp-action="Index" class="hover:underline">LinkStorage™</a>. All Rights Reserved.</span>
+            </div>
+        </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
