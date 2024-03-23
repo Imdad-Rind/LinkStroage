@@ -25,13 +25,12 @@ public class UsersController : Controller
     {
             var u = await _userManager.FindByIdAsync(id.ToString());
             var lnk = await _linkService.GetAllPublicLinksById(id);
+            
+            var CurrentUser = await _userManager.GetUserAsync(User);
+            Guid CurrentUserGuidId = Guid.Parse(CurrentUser.Id);
 
             if (User.Identity.IsAuthenticated)
             {
-
-                var CurrentUser = await _userManager.GetUserAsync(User);
-                Guid CurrentUserGuidId = Guid.Parse(CurrentUser.Id);
-
                 if (await _followerService.IsFollowing(CurrentUserGuidId, id))
                 {
                     model.IsFollowing = true;
@@ -40,12 +39,19 @@ public class UsersController : Controller
                 {
                     model.IsFollowing = false;
                 }
-
             }
 
             model.User = u;
-            model.links = lnk;
+            
+            if (id == CurrentUserGuidId)
+            {
 
+                var allPostByUser = await _linkService.AllTheLinksByUserId(CurrentUserGuidId);
+                model.links = allPostByUser;
+                return View(model);
+            }
+            
+            model.links = lnk;
             return View(model);
 
         

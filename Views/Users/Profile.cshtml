@@ -1,5 +1,4 @@
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 @model LinkStorage.ViewModels.ProfileViewModel
 @{
@@ -7,30 +6,34 @@
     ViewData["Title"] =  "Profile ";
 }
 <div>
-    <div>
-        <h1> @Model.User.UserName </h1>
-        <p> Post : @Model.User.PublicPostCount</p>
-        <p> Followers : @Model.User.FollowersCount</p>
-        <p>Following : @Model.User.FollowingsCount</p>
-        <hr/>
+    <div class="ml-24">
+        <h1 class=" flex flex-row justify-center text-5xl text-red-900 border-b-2 border-black pb-4 "> @Model.User.UserName </h1>
+        
+        <div class="flex flex-row content-evenly p-5 space-x-5  ">
+            <p> Post : @Model.User.PublicPostCount</p>
+            <p> Followers : @Model.User.FollowersCount</p>
+            <p>Following : @Model.User.FollowingsCount</p>
+        </div>
+        
+         
         
         @if (User.Identity.IsAuthenticated)
         {
             if (Model.User.Id != UserManager.GetUserId(User))
             {
-
-
-
                 if (Model.IsFollowing)
                 {
                     <form method="get">
-                        <button> <a asp-controller="Follows" asp-action="UnFollow" asp-route-id="@Model.User.Id">unfollow</a> </button>
+                        <button>
+                            <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-300 hover:bg-red-900 hover:text-white text-black rounded-lg focus:ring-4 focus:outline-none focus:ring-red-300" asp-controller="Follows" asp-action="UnFollow" asp-route-id="@Model.User.Id">Un Follow</a>
+                        </button>
+                        
                     </form>
                 }
                 else
                 {
                     <form method="get">
-                        <button> <a asp-controller="Follows" asp-action="FollowUser" asp-route-id="@Model.User.Id">Follow</a> </button>
+                        <button> <a  class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-300 hover:bg-red-900 hover:text-white text-black rounded-lg focus:ring-4 focus:outline-none focus:ring-red-300" asp-controller="Follows" asp-action="FollowUser" asp-route-id="@Model.User.Id">Follow</a> </button>
                     </form>
 
                 }
@@ -38,26 +41,69 @@
                 <br/>
                 <hr/>
             }
+            else
+            {
+                <button> <a  class="inline-flex items-center mb-6 px-3 py-2 text-sm font-medium text-center bg-red-300 hover:bg-red-900 hover:text-white text-black rounded-lg focus:ring-4 focus:outline-none focus:ring-red-300" asp-controller="Links" asp-action="Create">Upload New Link</a> </button>
+                <br/>
+                <hr/>
+            }
+            
 
            
         }
         
         
-        
     </div>
     <div>
-        <h4> All the public post by </h4>
-        <hr/>
-        @foreach (var lnk in Model.links)
+        @if (Model.User.Id != UserManager.GetUserId(User))
         {
-            <h3>@lnk.User.UserName</h3>
-            <h6>@lnk.Site</h6>
-            <div style="width: 40%; ">@Html.Raw(@lnk.RawHtml)</div> 
-            <br/>
-            <br/>
-            <hr/>
+            @foreach (var value in Model.links)
+            {
+                <div class=" ml-36 w-8/12  rounded-lg shadow ">
+                    <div class="rounded-t-lg">
+                        @Html.Raw(@value.RawHtml)
+                    </div>
+                    <div class="p-5">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Posted By : @value.User.UserName</h5>
+                        <p class="mb-3 font-normal text-gray-700 "> Site : @value.Site</p>
+                        <a href="@value.Link" target="_blank" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-300 hover:bg-red-900 hover:text-white text-black rounded-lg focus:ring-4 focus:outline-none focus:ring-red-300">
+                            View Post
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <hr class="w-48 h-1 mx-auto my-4 bg-red-900 border-0 rounded md:my-10 ">
+                </div>
+            }
+
         }
-        
+        else
+        {
+            foreach (var values in Model.links)
+            {
+                <div class=" ml-36 w-8/12  rounded-lg shadow ">
+                    <div class="rounded-t-lg">
+                        @Html.Raw(values.RawHtml)
+                    </div>
+                    <div class="p-5">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Is It Public :
+                            @if (values.IsPublic)
+                            {
+                                <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">Yes</h5>
+                            }
+                            else
+                            {
+                                <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">No</h5>
+                            }
+                        </h5>
+                        <h6 class="mb-3 font-normal text-gray-700 "> Site : @values.Site</h6>
+                    </div>
+                    <hr class="w-48 h-1 mx-auto my-4 bg-red-900 border-0 rounded md:my-10 ">
+                </div>
+
+            }
+        }
     </div>
 
 

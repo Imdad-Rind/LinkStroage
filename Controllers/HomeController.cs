@@ -39,7 +39,14 @@ namespace LinkStorage.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        
+        [HttpGet]
+        public IActionResult About()
         {
             return View();
         }

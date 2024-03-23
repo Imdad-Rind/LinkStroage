@@ -10,6 +10,6 @@ public class LinksCreateViewModel
     [Required]
     public string Site { get; set; }
     [Required]
-    [Display(Name = "Make It Public ?")]
+    [Display(Name = " Check Box To Make It Public : ")]
     public bool IsPublic { get; set; } = false;
 }

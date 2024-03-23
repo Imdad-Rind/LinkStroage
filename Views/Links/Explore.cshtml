@@ -4,19 +4,28 @@
 }
 
 
-<div>
-    
-    
-        @foreach (var value in Model)
-        {
-           <a asp-controller="Users" asp-action="Profile" asp-route-id="@value.User.Id" ><h3>@value.User.UserName</h3></a> 
-            <h6>@value.Site</h6>
-            <div style="width: 40%; ">@Html.Raw(@value.RawHtml)</div> 
-            <br/>
-            <br/>
-            <hr/>
-            
-            
-        }
+
+
+
+    @foreach (var value in Model)
+    {
+        <div class=" ml-36 w-8/12  rounded-lg shadow ">
+            <div class="rounded-t-lg">
+                @Html.Raw(@value.RawHtml)
+            </div>
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Posted By : @value.User.UserName</h5>
+                <p class="mb-3 font-normal text-gray-700 "> Site : @value.Site</p>
+                <a asp-controller="Users" asp-action="Profile" asp-route-id="@value.User.Id" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-red-300 hover:bg-red-900 hover:text-white text-black rounded-lg focus:ring-4 focus:outline-none focus:ring-red-300">
+                    Visit @value.User.UserName
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+            <hr class="w-48 h-1 mx-auto my-4 bg-red-900 border-0 rounded md:my-10 ">
+        </div>
         
-</div>
+    }
+
+
