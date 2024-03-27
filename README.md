@@ -13,6 +13,7 @@ The main feature of the platform is share or store link to your favorite content
 
 ## Requirements :
 - .NET 6 or Above
+- NodeJS
 - Your IDE of choice
   * VS Code
   * Visual Studio
