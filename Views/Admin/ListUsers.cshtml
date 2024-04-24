@@ -1,0 +1,53 @@
+@model IEnumerable<LinkStorage.ViewModels.ListUserViewModel>
+
+
+@{
+        ViewData["Title"] = "List Users";
+    }
+
+
+@{
+    if (Model.Any())
+    {
+       <div class="relative overflow-x-auto "> 
+            <table class="w-full text-sm text-left rtl:text-right text-gray-950 ">
+                <thead class="text-xs text-black uppercase ">
+                <tr>
+                    <th scope="col" class="px-6 py-3">UserName</th>
+                    <th scope="col" class="px-6 py-3">Email</th>
+                    <th scope="col" class="px-6 py-3">Followers Count</th>
+                    <th scope="col" class="px-6 py-3">Followings Count</th>
+                    <th scope="col" class="px-6 py-3">Public Post Count</th>
+                    <th scope="col" class="px-6 py-3">Role</th>
+                    
+                    
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var user in Model)
+                {
+                <tr class="bg-white  border-b ">
+                    <td class="px-6 py-4 font-medium text-black whitespace-nowrap ">@user.UserName</td>
+                    <td class="px-6 py-4">@user.Email</td>
+                    <td class="px-6 py-4" >@user.Followers</td>
+                    <td class="px-6 py-4" >@user.Followings</td>
+                    <td class="px-6 py-4" >@user.PublicPost</td>
+                    <td class="px-6 py-4" > null for now</td>
+                    <td class="px-6 py-4">
+                        <a class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline cursor-pointer" >Update</a>
+                    </td>
+                    <td class="px-6 py-4">
+                    <a class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline cursor-pointer" >Delete</a>
+                    </td>
+                </tr>
+                }
+                </tbody>
+                
+            </table>   
+        </div>  
+    }
+    else
+    {
+        <h2> No user in the list yet</h2>
+    }
+}
