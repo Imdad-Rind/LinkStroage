@@ -15,12 +15,63 @@ public class AdminController : Controller
         _roleManager = roleManager;
         _userManager = userManager;
     }
+
+    [HttpGet]
+    public async Task<IActionResult> UpdateUser(Guid id)
+    {
+        var usr =  await _userManager.FindByIdAsync(id.ToString());
+        var updateUser = new ListUserViewModel()
+        {
+            Id = id,
+            UserName = usr.UserName,
+            Email = usr.Email,
+            Followings = usr.FollowingsCount,
+            Followers = usr.FollowersCount,
+            PublicPost = usr.PublicPostCount
+            
+        };
+        return View(updateUser);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Update(ListUserViewModel model)
+    {
+        var usr =  await _userManager.FindByIdAsync(model.Id.ToString());
+
+
+        usr.UserName = model.UserName;
+        usr.Email = model.Email;
+
+        await _userManager.UpdateAsync(usr);
+        return RedirectToAction("ListUsers");
+    }
     
+    [HttpGet]
+    public async Task<IActionResult> DeleteUser(Guid id)
+    {
+        var usr =  await _userManager.FindByIdAsync(id.ToString());
+        var deleteUser = new ListUserViewModel()
+        {
+            Id = id,
+            UserName = usr.UserName,
+            Email = usr.Email,
+            Followings = usr.FollowingsCount,
+            Followers = usr.FollowersCount,
+            PublicPost = usr.PublicPostCount
+            
+        };
+        return View(deleteUser);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Delete(ListUserViewModel model)
+    {
+        return RedirectToAction("ListUsers");
+    }
     [HttpGet]
     public IActionResult ListUsers()
     {
         var usersList = _userManager.Users.Select(u => new ListUserViewModel()
         {
+            Id = Guid.Parse(u.Id),
             UserName = u.UserName,
             Email = u.Email,
             Followings = u.FollowingsCount,

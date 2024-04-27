@@ -4,6 +4,7 @@ namespace LinkStorage.ViewModels;
 
 public class ListUserViewModel
 {
+    public Guid Id { get; set; }
     [Display(Name = "UserName")]
     public string UserName { get; set; }
     public string Email { get; set; }
