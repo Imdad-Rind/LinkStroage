@@ -34,10 +34,10 @@
                     <td class="px-6 py-4" >@user.PublicPost</td>
                     <td class="px-6 py-4" > null for now</td>
                     <td class="px-6 py-4">
-                        <a class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline cursor-pointer" >Update</a>
+                        <a class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline cursor-pointer" asp-controller="Admin" asp-action="UpdateUser" asp-route-id="@user.Id" >Update</a>
                     </td>
                     <td class="px-6 py-4">
-                    <a class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline cursor-pointer" >Delete</a>
+                    <a class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline cursor-pointer"  asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id" >Delete</a>
                     </td>
                 </tr>
                 }

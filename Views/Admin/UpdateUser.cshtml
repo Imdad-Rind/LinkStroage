@@ -1,0 +1,52 @@
+@model LinkStorage.ViewModels.ListUserViewModel
+@{
+    ViewData["Title"] = "Update User INFO";
+}
+
+
+        <div class="w-full max-w-xs">
+          <form method="post" asp-controller="Admin" asp-action="Update" class="bg-white border-2 shadow-md rounded px-8 pt-6 pb-8 mb-4" >
+            <input type="hidden" hidden asp-for="Id"/>
+            <div class="mb-4">
+              <label asp-for="UserName" class="block text-gray-700 text-sm font-bold mb-2"></label>
+              <input asp-for="UserName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" >
+            </div>
+
+            <div class="mb-4">
+              <label asp-for="Email" class="block text-gray-700 text-sm font-bold mb-2"></label>
+              <input asp-for="Email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" inputmode="email" >
+            </div>
+
+            <div class="mb-4">
+              <label asp-for="Followers" class="block text-gray-700 text-sm font-bold mb-2"></label>
+              <input asp-for="Followers" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" disabled >
+            </div>
+
+            <div class="mb-6">
+              <label asp-for="Followings" class="block text-gray-700 text-sm font-bold mb-2"></label>
+              <input asp-for="Followings" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" disabled >
+            </div>
+            <div class="mb-6">
+            <label asp-for="Roles" class="block text-gray-700 text-sm font-bold mb-2"></label>
+            <input asp-for="Roles" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" disabled>
+          </div>
+
+            <div class="flex items-center justify-between">
+              <button class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Update
+              </button>
+              <button class="bg-red-300 hover:bg-red-900 hover:text-white text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="reset">
+                Reset
+              </button>
+              
+              @*<a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                Forgot Password?
+              </a>*@
+            </div>
+          </form>
+          
+        </div>
+
+
+
+
