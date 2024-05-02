@@ -62,8 +62,12 @@ public class AdminController : Controller
         return View(deleteUser);
     }
     [HttpPost]
-    public async Task<IActionResult> Delete(ListUserViewModel model)
+    public async Task<IActionResult> Delete(Guid id)
     {
+        var userToDelete = await _userManager.FindByIdAsync(id.ToString());
+
+        await _userManager.DeleteAsync(userToDelete);
+        
         return RedirectToAction("ListUsers");
     }
     [HttpGet]
