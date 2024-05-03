@@ -68,6 +68,10 @@ public class AccountController : Controller
                 lockoutOnFailure: false);
             if (result.Succeeded)
             {
+                if (User.IsInRole("Admin"))
+                {
+                    RedirectToAction("ListUsers", "Admin");
+                }
                 return RedirectToAction("Index", "Home");
             }
             else

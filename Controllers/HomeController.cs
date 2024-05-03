@@ -25,17 +25,15 @@ namespace LinkStorage.Controllers
         }
 
         public async Task<IActionResult> Index()
-        {
-            if (_signInManager.IsSignedIn(User))
+        { 
+             if (_signInManager.IsSignedIn(User))
             {
                 var currentUserId = _userManager.GetUserId(User);
                 Guid guidCurrentUserId = Guid.Parse(currentUserId);
                 
                 var lnks = await _linkService.GetAllThePublicLinksOfUserYouFollowingByYourId(guidCurrentUserId);
-                
                 return View(lnks);
             }
-
             return View();
         }
 
