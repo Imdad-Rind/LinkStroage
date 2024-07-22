@@ -1,7 +1,7 @@
 # LinkStroage
 
 ## Description : 
-LinkStroage is a platform for the people to share their favorite content over the internet all for fun
+LinkStroage is an open source Platform where a user can share the links of their favorite content over like (Insat reels, TikTok, Youtube vids, Facebook posts, Twitter/X Tweet/Post, Sub-Reddits, anything)
 
 ## Featurs :
 The main feature of the platform is share or store link to your favorite content on the internet
